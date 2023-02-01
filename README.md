@@ -7,7 +7,7 @@
 
 ### R files:
 - example-code.rmd - sample analysis of individual meta-analysis
-- overallanalysis.rmd - r code used to reproduce analyses and figures in paper using fulldataset.csv
+- analysis of temporal trends.rmd - r code used to reproduce analyses and figures in paper using fulldataset.csv
 - two stage.rmd - function for two stage CMA (see Kulinskaya & Mah 2022)
 - residual.rmd - function for calculating residuals from CMA, to test impact of moderators
 
