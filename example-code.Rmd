@@ -1,0 +1,201 @@
+---
+title: "Example r code"
+output: html_document
+date: '2022-10-10'
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("C:/Users/lizzi/Documents/PhD/cumulMA2.txt")
+library (metafor)
+library(tidyr)
+library(MuMIn)
+library(dplyr)
+library(ggplot2)
+eval(metafor:::.MuMIn)
+```
+
+````{r data import}
+akiyama<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/Akiyama et al 2010/Akiyama et al 2010 - data file.csv",
+                  header =T, stringsAsFactors = TRUE)
+akiyama<-akiyama[order(akiyama$Year),]
+
+```
+
+```{r effect size calculation}
+es<-as.vector(escalc(n1i=akiyama$Number.of.replicates,n2i=akiyama$Number.of.replicates,m1i=akiyama$Mean.N2O.emission.from.treatment..N2O.N..kg.ha.1.,m2i=akiyama$Mean.N2O.emission.from.control..N2O.N..kg.ha.1., sd1i=akiyama$SD..N2O...treatment,sd2i = akiyama$SD..N2O...control, measure="SMD"))
+akiyama$yi<-es$yi
+akiyama$vi<-es$vi
+akiyama<-drop_na(akiyama)
+akiyama$study<-c(1:length(akiyama$vi))
+
+```
+```{r cor es and year}
+agr<-aggregate(yi~Year, data=akiyama, mean)
+cor.test(formula = ~ Year + yi, 
+ method = "spearman", data = agr)
+agrv<-aggregate(vi~Year, data=akiyama, mean)
+agr$var<-agrv$vi
+cor.test(formula = ~ Year + yi, 
+ method = "spearman", data = agr)
+```
+
+````{r es cma}
+###standard one stage cma
+mv<-rma.mv(yi,vi,data=akiyama, random=~1|Authors/study)
+dag<-diag(mv[["M"]],)
+akiyama$dag<-dag
+
+
+m<-rma.uni(yi, vi=dag, data=akiyama, method="FE", level = 99)
+
+cma<-cumul(m, order=order(akiyama$Year), level=99)
+
+cma[["Year"]]<-(akiyama$Year)
+cmadata<-data.frame(cma$estimate, cma$ci.lb, cma$ci.ub, cma$Year, akiyama$dag, akiyama$Reference)
+cmadata$study<-c(1:length(cmadata$cma.Year))
+cmadata <- cmadata[order(cmadata$study, decreasing = TRUE),]
+cmadata2<-cmadata %>% distinct(akiyama.Reference, .keep_all = TRUE)
+cmadata2<-cmadata2[order(cmadata2$cma.Year, decreasing = TRUE),]
+cmadata2$cma.Year<-as.factor(cmadata2$cma.Year) 
+cmadata2$akiyama.Reference<-factor(cmadata2$akiyama.Reference, levels=rev(cmadata2$akiyama.Reference))
+cmadata2$study<-1:length(cmadata2$cma.Year)
+
+cmadata2<-cmadata2[order(cmadata2$study),]
+cmadata3<-cmadata2 %>% distinct(cma.Year, .keep_all = TRUE)
+cmadata3<-cmadata3[order(cmadata3$cma.Year),]
+cmadata3$cma.Year<-as.factor(cmadata3$cma.Year) 
+cmadata3$cma.Year<-factor(cmadata3$cma.Year, levels=(cmadata3$cma.Year))
+
+
+```
+```{r model selection}
+#### dredging full model to find best fitting
+
+full_model <- rma.mv(
+  yi, 
+ vi,
+  mods = ~Land.use+Tested.mitigation.option+Type.of.inhibitora+Type.of.chemical.or.organic.fertilizerb+Soil.type+Land.use+Land.use*Tested.mitigation.option+Land.use*Type.of.inhibitora+Land.use*Type.of.chemical.or.organic.fertilizerb+Land.use*Soil.type+Land.use*Land.use+Tested.mitigation.option*Type.of.inhibitora+Tested.mitigation.option*Type.of.chemical.or.organic.fertilizerb+Tested.mitigation.option*Soil.type+Tested.mitigation.option*Land.use+ Type.of.inhibitora*Type.of.chemical.or.organic.fertilizerb+Type.of.inhibitora*Soil.type+Type.of.inhibitora*Land.use+Type.of.chemical.or.organic.fertilizerb*Soil.type+Type.of.chemical.or.organic.fertilizerb*Land.use+Soil.type*Land.use,
+  random=~1|Authors/study, 
+  data = akiyama
+)
+
+model_selection <- dredge(full_model, trace = 2)
+subset(model_selection, delta <= 2, recalc.weights = FALSE)
+
+
+best_model <- get.models(model_selection, subset = 1, method = "REML")[[1]]
+summary(best_model)
+best_model$formula.mods
+###output is best model, carried over to next section
+```
+
+```{r cma on residuals}
+#### cma on residuals using new function - currently this is compared to standard one stage CMA, not new two stage.
+m<-rma.mv(yi, vi, data=akiyama, mods = ~Soil.type + Type.of.chemical.or.organic.fertilizerb+1, random=~1|Reference/study, level =99)
+
+mac<-cumul_ma2( year=akiyama$Year, publication=akiyama$Reference,
+       study=akiyama$study, m=m)
+
+
+ forest(mac[[3]]$theta_cc, mac[[3]]$vi_cc, slab = mac[[3]]$year, xlab = "Residual", level=99)     ## forest plot cma residuals by year
+ mac[[3]]
+ forest(mac[[2]]$theta_cc, mac[[2]]$vi_cc, slab = mac[[2]]$publication, xlab = "Residual", level = 95)     ## forest plot cma residuals by publication
+ forest(mac[[4]]$theta_y, mac[[4]]$vi_y, slab = mac[[4]]$year, xlab = "Residual", level = 99)		## forest plot residuals by year
+ mac[[4]]
+```
+
+
+
+```{r correlations}
+agr<-aggregate(Number.of.replicates~Year, data=akiyama, median)
+cor.test(formula = ~ Year + Number.of.replicates, 
+ method = "spearman", data = agr)
+
+cor.test(formula = ~ year + theta_y, 
+  random=~1|Source.publication/study, method = "spearman", data = mac[[4]])
+
+```
+
+```{r study plot}
+####plots
+
+cmadata2$akiyama.Reference<-factor(cmadata2$akiyama.Reference, levels=(cmadata2$akiyama.Reference))
+p=ggplot(cmadata2, aes(y=akiyama.Reference, x=cma.estimate, xmin=cma.ci.lb, xmax=cma.ci.ub))+
+  geom_point()+
+  geom_errorbarh(height=.1)+
+  scale_x_continuous(limits=c(-20,1), name='Effect size',)+
+  ylab('Reference')+
+  geom_vline(xintercept=0, color='black', linetype='dashed')+
+  geom_point(data=cmadata3,
+             aes(x=cma.estimate,y=akiyama.Reference, color=cma.Year),size=2)+
+guides(col=guide_legend(reverse = TRUE))
+
+p1<-p+theme(axis.text = element_text(size = 5),axis.title = element_text(size=7),legend.text = element_text(size = 7),legend.title = element_text(size=8))
+p1
+ggsave("akiyamastudy.tiff")
+```
+```{r year plot}
+cmadata3$study<-1:length(cmadata3$cma.Year)
+cmadata3<-cmadata3[order(cmadata3$study),]
+cmadata3$cma.Year<-factor(cmadata3$cma.Year, levels=rev(cmadata3$cma.Year))
+
+
+p2=ggplot(cmadata3, aes(y=cma.Year, x=cma.estimate, xmin=cma.ci.lb, xmax=cma.ci.ub, color=cma.Year))+
+  geom_point()+
+  geom_errorbarh(height=.1)+
+  scale_x_continuous(limits=c(-20,2), name='Effect size',)+
+  ylab('Year')+
+  geom_vline(xintercept=0, color='black', linetype='dashed')+
+guides(col=guide_legend(reverse = TRUE))
+p2<-p2+theme(axis.text = element_text(size = 10),axis.title = element_text(size=11),legend.text = element_blank(),legend.position="none",legend.title = element_blank(),axis.line = element_line(),
+        panel.border = element_blank(),
+        panel.background = element_blank())
+p2
+ggsave("akiyamayear.jpg")
+```
+```{r new cma}
+
+#### new two stage CMA
+
+akiyama<-akiyama[order(akiyama$Year),]
+akiyama$study<-c(1:length(akiyama$vi))
+akiyama$nc<-akiyama$Number.of.replicates
+akiyama$nt<-akiyama$Number.of.replicates
+mv<-rma.mv(yi,vi,data=akiyama, random=~1|Authors/study,)
+dag<-diag(mv[["M"]],)
+akiyama$dag<-dag
+studyn<-aggregate(nc~study_id, data=akiyama, median)
+studyyi<-aggregate(yi~study_id, data=akiyama, median)
+studyvi<-aggregate(dag~study_id, data=akiyama, median)
+nC<-as.numeric(studyn$nc)
+nT<-as.numeric(studyn$nc)
+yi<-as.numeric(studyyi$yi)
+vi<-as.numeric(studyvi$dag)
+
+twostage<-TwoStageCMA(measure = "SMD", yi=yi, vi=vi, level=0.99,  nC=nC, nT=nT)
+cmatwostage<-as.data.frame(twostage$Stg2output2)
+cmadata2<-cmadata2[order(cmadata2$cma.Year),]
+cmatwostage$Year<-cmadata2$cma.Year
+cmatwostage<-cmatwostage[order(cmatwostage$Year, decreasing = TRUE),]
+cmatwostage<-cmatwostage %>% distinct(Year, .keep_all = TRUE)
+cmatwostage<-cmatwostage[order(cmatwostage$Year),]
+cmatwostage$Year<-as.factor(cmatwostage$Year) 
+cmatwostage$Year<-factor(cmatwostage$Year, levels=(cmatwostage$Year))
+
+cmatwostage$study<-1:length(cmatwostage$Year)
+cmatwostage<-cmatwostage[order(cmatwostage$study),]
+cmatwostage$Year<-factor(cmatwostage$Year, levels=rev(cmatwostage$Year))
+p2=ggplot(cmatwostage, aes(y=Year, x=PM2_cumulative_effect, xmin=PM2_effect_lb, xmax=PM2_effect_ub, color=Year))+
+  geom_point()+
+  geom_errorbarh(height=.1)+
+  scale_x_continuous(limits=c(-6,4), name='Effect size',)+
+  ylab('Year')+
+  geom_vline(xintercept=0, color='black', linetype='dashed')+
+guides(col=guide_legend(reverse = TRUE))
+p2<-p2+theme(axis.text = element_text(size = 5),axis.title = element_text(size=7),legend.text = element_text(size = 7),legend.title = element_text(size=8))
+p2
+ggsave("akiyamatwostage.jpg")
+```

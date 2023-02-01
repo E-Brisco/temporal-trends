@@ -1,0 +1,159 @@
+
+```{r}
+trenddata<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/temporal trend dataset with new method.csv", stringsAsFactors = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(car)
+if(!require(psych)){install.packages("car")}
+if(!require(MASS)){install.packages("MASS")}
+if(!require(rcompanion)){install.packages("rcompanion")}
+
+```
+```{r}
+
+count(trenddata, X2.stage.magnitude.trend, sort = TRUE)
+count(trenddata, X2.stage.significance.trend, sort = TRUE)
+count(trenddata, X2.stage.significance.trend.1, sort = TRUE)
+count(trenddata, X2.stage.magnitude.trend.1, sort = TRUE)
+
+count(trenddata, Residual.trend, sort = TRUE)
+
+with(trenddata, table(X2.stage.magnitude.trend, Significance.of.sample.size),)
+
+trendonly<-subset(trenddata, X2.stage.magnitude.trend=="1")
+trendsigonly<-subset(trenddata, X2.stage.significance.trend=="1")
+
+
+```
+
+
+```{r}
+trenddatanona<-drop_na(trenddata)
+trenddatanona$Number.of.significant.moderators<-as.numeric(trenddatanona$Number.of.significant.moderators)
+logmods = sqrt(trenddatanona$Number.of.significant.moderators)
+hist(logmods)
+T_tuk =
+     transformTukey(trenddata$Number.of.significant.moderators,
+                     plotit=FALSE)
+plotNormalHistogram(T_tuk)
+trenddatanona$logmods<-logmods
+
+lm<-lm(formula =Number.of.significant.moderators ~ Residual.trend, 
+  data = trenddatanona)
+summary(lm)
+trendonly$Number.of.significant.moderators<-as.numeric(trendonly$Number.of.significant.moderators)
+lm<-lm(formula = Number.of.significant.moderators ~ Residual.trend, 
+  data = trendonly)
+summary(lm)
+```
+```{r}
+##Moderator type
+
+chisq.test(trenddatanona$climate.moderator:trenddatanona$location.moderator, trenddatanona$Residual.trend)
+
+
+chisq.test(trenddatanona$climate.moderator,trenddatanona$Residual.trend)
+
+chisq.test(trendonly$climate.moderator,trendonly$Residual.trend)
+
+chisq.test(trenddatanona$location.moderator,trenddatanona$Residual.trend)
+
+chisq.test(trendonly$location.moderator,trendonly$Residual.trend)
+
+chisq.test(trenddatanona$study.species.moderator,trenddatanona$Residual.trend)
+
+chisq.test(trendonly$study.species.moderator,trendonly$Residual.trend)
+
+chisq.test(trenddatanona$experimental.conditions.moderator,trenddatanona$Residual.trend)
+
+chisq.test(trendonly$experimental.conditions.moderator,trendonly$Residual.trend)
+
+chisq.test(trenddata$methodology.moderator,trenddata$Residual.trend)
+with(trenddatanona, table(Residual.trend, X2.stage.magnitude.trend,methodology.moderator),)
+chisq.test(trendonly$methodology.moderator,trendonly$Residual.trend)
+
+##year of publication
+
+agr<-aggregate(trenddata$Year~trenddata$X2.stage.magnitude.trend, FUN=mean)
+chisq.test(trenddata$Year,trenddata$X2.stage.magnitude.trend)
+trenddatanona$Year<-as.numeric(trenddatanona$Year)
+
+trenddata$Year<-as.numeric(trenddata$Year)
+lm1<-glm(formula = X2.stage.magnitude.trend~Year, 
+  data = trenddata, family=binomial)
+summary(lm1)
+
+chisq.test(trenddata$Year,trenddata$X2.stage.magnitude.trend.1)
+chisq.test(trenddata$Year,trenddata$Residual.trend)
+
+
+
+
+cor.test(formula = ~ Year + Year.span, 
+ method = "spearman", data = trenddata)
+plot(Year~Year.span, data=trenddata)
+hist(trenddata$Year)
+
+
+lm1<-lm(formula = Year.span ~ X2.stage.magnitude.trend, 
+  data = trenddata)
+summary(lm1)
+lm2<-lm(formula = Year.span~ X2.stage.magnitude.trend, 
+  data = trenddatanona)
+summary(lm2)
+
+plot(trenddatanona$Year.span~trenddatanona$X2.stage.magnitude.trend)
+
+lm3<-lm(formula = Year.span ~ Residual.trend, 
+  data = trendonly)
+summary(lm3)
+
+cor.test(formula = ~ Year.span + Number.of.significant.moderators, 
+ method = "spearman", data = trenddata)
+
+with(trenddata, table(Year, X2.stage.magnitude.trend),)
+```
+
+
+```{r}
+
+##year of publication
+
+
+chisq.test(trenddata$Year,trenddata$X2.stage.significance.trend.1)
+chisq.test(trendsigonly$Year,trendsigonly$X2.stage.significance.trend.1)
+
+with(trenddata, table(X2.stage.significance.trend.1, Year),)
+with(trendsigonly, table(X2.stage.significance.trend.1, Year),)
+```
+```{r}
+
+cor.test(formula = ~ Year + Year.span, 
+ method = "spearman", data = trenddata)
+plot(Year~Year.span, data=trenddata)
+```
+```{r}
+chisq.test(trenddata$X2.stage.magnitude.trend,trenddata$X2.stage.significance.trend)
+chisq.test(trenddata$X2.stage.magnitude.trend.1,trenddata$X2.stage.significance.trend.1)
+with(trenddata, table(X2.stage.significance.trend.1,X2.stage.magnitude.trend.1 ),)
+with(trenddata, table(X2.stage.significance.trend.1,Year),)
+
+
+sometrend<-subset(trenddata, X2.stage.significance.trend=="1"|X2.stage.magnitude.trend=="1")
+chisq.test(sometrend$X2.stage.magnitude.trend.1,sometrend$X2.stage.significance.trend.1)
+```
+```{r}
+newmethoddata<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/temporal trend dataset with new method.csv", stringsAsFactors = TRUE)
+
+with(newmethoddata, table(Residual.trend),)
+chisq.test(newmethoddata$magnitude.change, newmethoddata$X1.stage.magnitude.trend)
+flatexcl<-subset(newmethoddata, !X1.stage.magnitude.trend=="no")
+chisq.test(flatexcl$magnitude.trend, flatexcl$magnitude.change)
+with(newmethoddata, table(X2.stage.magnitude.trend, magnitude.change),)
+
+```
+```{r}
+ggplot(trenddata, aes(x = X2.stage.magnitude.trend.1, fill = X2.stage.significance.trend.1)) + geom_bar()+theme(axis.text = element_text(size = 16),axis.title = element_text(size=16), legend.text = element_text(size = 14),legend.title = element_text(size=16))+xlab("Effect magnitude trend")+guides(fill = guide_legend(title = "Effect significance trend"))+scale_fill_brewer(palette = "Spectral")
+ggsave("stackedbar.jpg")
+```
