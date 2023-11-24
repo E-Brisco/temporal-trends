@@ -1,0 +1,66 @@
+,Land.use,Tested.mitigation.option,Number.of.replicates,Mean.N2O.emission.from.treatment..N2O.N..kg.ha.1.,Mean.N2O.emission.from.control..N2O.N..kg.ha.1.,SD..N2O...treatment,SD..N2O...control,Type.of.inhibitora,Type.of.chemical.or.organic.fertilizerb,Soil.type,Total.N.application.rate..kg.ha.1.,Year,Authors,study_id,Reference,yi,vi,study
+1,fallow,nitrification inhibitors,3,0.034,0.071,0.001,0.004,nitrapyrin,AA,,80,1984,Magalhaes et al. ,22,Magalhaes et al. 1984,-10.12586942,9.211102631,1
+2,upland,nitrification inhibitors,4,1.174,3.362,0.193,0.973,nitrapyrin,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.709585065,0.958865701,2
+3,upland,nitrification inhibitors,4,2.255,3.362,1.223,0.973,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-0.870126179,0.547319973,3
+4,upland,nitrification inhibitors,4,2.27,3.362,0.483,0.973,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-1.234884924,0.595308799,4
+5,upland,nitrification inhibitors,4,1.109,3.226,0.188,0.965,nitrapyrin,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.645163938,0.937305766,5
+6,upland,nitrification inhibitors,4,1.017,3.226,0.451,0.965,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.547519498,0.905615975,6
+7,upland,nitrification inhibitors,4,1.005,3.226,0.171,0.965,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.783913436,0.984385876,7
+8,upland,nitrification inhibitors,4,0.98,1.651,0.593,0.618,nitrapyrin,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-0.962385381,0.557886601,8
+9,upland,nitrification inhibitors,4,0.483,1.651,0.128,0.618,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.273429518,0.823030111,9
+10,upland,nitrification inhibitors,4,0.434,1.651,0.192,0.618,Ca-carbide,U,mesic Aridic Argiustoll,218,1992,Bronson et al. ,5,Bronson et al. 1992,-2.310157715,0.833551792,10
+11,upland,nitrification inhibitors,2,0.127,0.164,0.008,0.02,AM,U,Andosol,200,2000,Akiyama et al. ,2,Akiyama et al. 2000,-1.370511851,1.234787842,11
+12,upland,polymer-coated fertilizers ,2,0.19,0.164,0.012,0.02,,U,Andosol,200,2000,Akiyama et al. ,2,Akiyama et al. 2000,0.889434476,1.098886711,12
+13,paddy,nitrification inhibitors,4,0.142,0.16,0.035,0.053,DCD,U,Typic Ustochrept,140,2000,Kumar et al. ,19,Kumar et al. 2000,-0.348139038,0.507575049,13
+14,paddy,nitrification inhibitors,4,0.147,0.16,0.024,0.053,thiosulphate,U,Typic Ustochrept,140,2000,Kumar et al. ,19,Kumar et al. 2000,-0.274480934,0.504708736,14
+15,paddy,nitrification inhibitors,4,0.174,0.235,0.019,0.029,DCD,AS,Typic Ustochrept,140,2000,Kumar et al. ,19,Kumar et al. 2000,-2.16135332,0.791965511,15
+16,paddy,nitrification inhibitors,4,0.049,0.06,0.011,0.005,DCD,U,Typic Ustochrept,140,2000,Majumdar et al. ,23,Majumdar et al. 2000,-1.118315704,0.578164376,16
+17,paddy,nitrification inhibitors,4,0.057,0.06,0.007,0.005,neem,U,Typic Ustochrept,140,2000,Majumdar et al. ,23,Majumdar et al. 2000,-0.428404043,0.511470627,17
+18,paddy,nitrification inhibitors,4,0.053,0.06,0.005,0.005,neem,U,Typic Ustochrept,140,2000,Majumdar et al. ,23,Majumdar et al. 2000,-1.216077363,0.59242776,18
+19,grassland,nitrification inhibitors,3,1.1,1.62,0.294,0.294,DMPP,cattle slurry,Halstow series,64,2001,Dittert et al. ,10,Dittert et al. 2001,-1.411224393,0.832629524,19
+20,upland,nitrification inhibitors,4,0.093,0.132,0.004,0.005,DCD,ASN,Fluvisol,90,2001,Weiske et al. ,35,Weiske et al. 2001,-7.482054117,3.998820863,20
+21,upland,nitrification inhibitors,4,0.267,0.34,0.007,0.01,DCD,ASN,Fluvisol,160,2001,Weiske et al. ,35,Weiske et al. 2001,-7.346456177,3.873151148,21
+22,upland,nitrification inhibitors,4,0.252,0.353,0.01,0.01,DCD,ASN,Fluvisol,180,2001,Weiske et al. ,35,Weiske et al. 2001,-8.773129547,5.310487628,22
+23,upland,nitrification inhibitors,4,0.079,0.132,0.004,0.005,DMPP,ASN,Fluvisol,90,2001,Weiske et al. ,35,Weiske et al. 2001,-10.1679197,6.961661935,23
+24,upland,nitrification inhibitors,4,0.181,0.34,0.007,0.01,DMPP,ASN,Fluvisol,160,2001,Weiske et al. ,35,Weiske et al. 2001,-16.00118537,16.50237083,24
+25,upland,nitrification inhibitors,4,0.167,0.353,0.006,0.01,DMPP,ASN,Fluvisol,180,2001,Weiske et al. ,35,Weiske et al. 2001,-19.59258125,24.4918275,25
+26,upland,polymer-coated fertilizers ,4,0.544,0.537,0.119,0.138,,U,Andosol,150,2001,Yan et al. ,36,Yan et al. 2001,0.047189401,0.500139177,26
+27,upland,polymer-coated fertilizers ,2,0.163,0.184,0.019,0.008,,CN,Andosol,150,2002,Akiyama & Tsuruta ,1,Akiyama & Tsuruta 2002,-0.812764809,1.082573329,27
+28,upland,polymer-coated fertilizers ,2,0.072,0.097,0.009,0.021,,CN,Andosol,150,2002,Akiyama & Tsuruta ,1,Akiyama & Tsuruta 2002,-0.873061463,1.09527954,28
+29,upland,nitrification inhibitors,4,1.09,1.43,0.21,0.16,DCD,U,Typic Ustochrept,120,2002,Majumdar et al. ,24,Majumdar et al. 2002,-1.582015355,0.656423286,29
+30,upland,nitrification inhibitors,4,1,1.43,0.1,0.16,neem,U,Typic Ustochrept,120,2002,Majumdar et al. ,24,Majumdar et al. 2002,-2.799571882,0.98985017,30
+31,upland,nitrification inhibitors,4,1.36,1.43,0.19,0.16,neem,U,Typic Ustochrept,120,2002,Majumdar et al. ,24,Majumdar et al. 2002,-0.346181316,0.507490094,31
+32,upland,nitrification inhibitors,4,1.19,1.43,0.12,0.16,thiosulphate,U,Typic Ustochrept,120,2002,Majumdar et al. ,24,Majumdar et al. 2002,-1.474108371,0.635812218,32
+33,grassland,nitrification inhibitors,4,0.715,1.242,0.048,0.234,DCD,CAN,Gleysol,80,2002,Merino et al. ,29,Merino et al. 2002,-2.710147312,0.959056153,33
+34,grassland,nitrification inhibitors,4,0.488,1.225,0.08,0.191,DCD,cattle slurry,Gleysol,174,2002,Merino et al. ,29,Merino et al. 2002,-4.37203069,1.694665772,34
+35,paddy,nitrification inhibitors,3,0.483,0.735,0.041,0.068,DCD,U,Typic Ustochrept,120,2002,Pathak et al. ,31,Pathak et al. 2002,-3.581072014,1.735339731,35
+36,paddy,nitrification inhibitors,3,0.54,0.929,0.023,0.076,DCD,U,Typic Ustochrept,120,2002,Pathak et al. ,31,Pathak et al. 2002,-5.527924657,3.213162585,36
+37,upland,nitrification inhibitors,3,0.619,0.766,0.019,0.036,DCD,U,Typic Ustochrept,120,2002,Pathak et al. ,31,Pathak et al. 2002,-4.074845434,2.050363776,37
+38,upland,nitrification inhibitors,3,0.55,0.711,0.027,0.011,DCD,U,Typic Ustochrept,120,2002,Pathak et al. ,31,Pathak et al. 2002,-6.231196867,3.902317867,38
+39,grassland,nitrification inhibitors,3,1.126,3.882,0.96,4.579,DCD,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,-0.664695731,0.703485035,39
+40,grassland,nitrification inhibitors,3,4.94,9.189,2.651,7.469,DCD,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,-0.604942906,0.697162993,40
+41,grassland,urease inhibitors,3,8.491,3.882,8.675,4.579,NBPT,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,0.530179124,0.690090825,41
+42,grassland,urease inhibitors,3,7.773,9.189,5.061,7.469,NBPT,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,-0.177095269,0.669280228,42
+43,grassland,polymer-coated fertilizers ,3,0.569,3.882,0.484,4.579,,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,-0.811882596,0.721596113,43
+44,grassland,polymer-coated fertilizers ,3,8.405,9.189,5.061,7.469,,U,Gleysol,100,2003,Dobbie & Smith ,11,Dobbie & Smith 2003,-0.098052748,0.667467862,44
+45,paddy,nitrification inhibitors,3,0.051,0.107,0.007,0.005,DCD,U,Typic Ustochrept,120,2003,Ghosh et al. ,14,Ghosh et al. 2003,-7.345599172,5.163152266,45
+46,paddy,nitrification inhibitors,3,0.052,0.096,0.004,0.005,DCD,AS,Typic Ustochrept,120,2003,Ghosh et al. ,14,Ghosh et al. 2003,-7.753821652,5.676812517,46
+47,paddy,nitrification inhibitors,3,0.107,0.119,0.007,0.013,DCD,PN,Typic Ustochrept,120,2003,Ghosh et al. ,14,Ghosh et al. 2003,-0.917081766,0.736753247,47
+48,upland,polymer-coated fertilizers ,2,1.004,0.778,0.117,0.228,,U,Andosol,250,2003,Hou & Tsuruta ,16,Hou & Tsuruta 2003,0.703647377,1.061889954,48
+49,grassland,nitrification inhibitors,4,0.715,1.242,0.048,0.234,DCD,AN,,80,2003,Macadam et al. ,21,Macadam et al. 2003,-2.710147312,0.959056153,49
+50,grassland,nitrification inhibitors,4,0.488,1.225,0.08,0.191,DCD,cattle slurry,,85,2003,Macadam et al. ,21,Macadam et al. 2003,-4.37203069,1.694665772,50
+51,grassland,nitrification inhibitors,4,3.167,7.519,0.161,0.744,DMPP,cattle slurry,,125,2003,Macadam et al. ,21,Macadam et al. 2003,-7.023061092,3.582711694,51
+52,grassland,nitrification inhibitors,4,1.143,2.938,0.023,0.18,DMPP,cattle slurry,,125,2003,Macadam et al. ,21,Macadam et al. 2003,-12.15131693,9.728406446,52
+53,grassland,polymer-coated fertilizers ,3,0.305,1.6,0,0.61,,AN,Gleysol,600,2004,Ball et al. ,3,Ball et al. 2004,-2.395493478,1.14486575,53
+54,grassland,polymer-coated fertilizers ,3,0.533,2.21,0.076,0.305,,AN,Gleysol,600,2004,Ball et al. ,3,Ball et al. 2004,-6.020151932,3.68685244,54
+55,grassland,polymer-coated fertilizers ,3,1.067,15.7,0.305,1.6,,AN,Gleysol,600,2004,Ball et al. ,3,Ball et al. 2004,-10.13719407,9.230225294,55
+56,grassland,polymer-coated fertilizers ,3,1.067,5.867,0.229,1.6,,AN,Gleysol,600,2004,Ball et al. ,3,Ball et al. 2004,-3.350989378,1.602427484,56
+57,grassland,polymer-coated fertilizers ,3,0.61,0.99,0.152,0.076,,AN,Gleysol,600,2004,Ball et al. ,3,Ball et al. 2004,-2.523132522,1.197183144,57
+58,grassland,nitrification inhibitors,3,5.6,10.5,1.2,3,DCD,pig slurry,Typic Xerofluvent,200,2005,Vallejo et al. A,33,Vallejo et al. 2005,-1.711200467,0.91068392,58
+59,upland,nitrification inhibitors,3,4.01,5.62,0.42,0.23,DCD,pig slurry,Clcic Haploxerepts,175,2006,Vallejo et al. B,34,Vallejo et al. 2006,-3.793839099,1.866101259,59
+60,upland,polymer-coated fertilizers ,4,0.464,0.452,0.035,0.085,,U,Andosol,90,2007,Chu et al. ,8,Chu et al. 2007,0.16036185,0.501607245,60
+61,upland,nitrification inhibitors,3,6.7,8.27,0.97,0.99,DCD,pig slurry,Typic Xerofluvent,175c,2007,Meijide et al. ,27,Meijide et al. 2007,-1.278177091,0.80281139,61
+62,upland,nitrification inhibitors,3,0.211,6.917,0.09,1.097,DCD,U,Ultisol,90,2008,Hadi et al. ,15,Hadi et al. 2008,-6.874724298,4.605152848,62
+63,upland,polymer-coated fertilizers ,3,0.573,6.917,0.535,1.097,,U,Ultisol,90,2008,Hadi et al. ,15,Hadi et al. 2008,-5.865140842,3.533323092,63
+64,grassland,nitrification inhibitors,3,3.52,6.25,0.351,0.325,DCD,urine,yellow-red Sudsol,1000,2008,Kelly et al. ,18,Kelly et al. 2008,-6.439690897,4.122468237,64
+65,grassland,nitrification inhibitors,3,3.72,4.99,0.43,0.245,DCD,urine,yellow-red Sudsol,1000,2008,Kelly et al. ,18,Kelly et al. 2008,-2.895624362,1.365386704,65
