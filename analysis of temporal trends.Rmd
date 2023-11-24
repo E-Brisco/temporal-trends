@@ -1,6 +1,6 @@
 
 ```{r}
-trenddata<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/temporal trend dataset with new method.csv", stringsAsFactors = TRUE)
+trenddata<-read.csv("full dataset.csv", stringsAsFactors = TRUE)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
