@@ -144,7 +144,7 @@ sometrend<-subset(trenddata, X2.stage.significance.trend=="1"|X2.stage.magnitude
 chisq.test(sometrend$X2.stage.magnitude.trend.1,sometrend$X2.stage.significance.trend.1)
 ```
 ```{r}
-newmethoddata<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/temporal trend dataset with new method.csv", stringsAsFactors = TRUE)
+newmethoddata<-read.csv("full dataset.csv", stringsAsFactors = TRUE)
 
 with(newmethoddata, table(Residual.trend),)
 chisq.test(newmethoddata$magnitude.change, newmethoddata$X1.stage.magnitude.trend)
