@@ -8,7 +8,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("C:/Users/lizzi/Documents/PhD/cumulMA2.txt")
+source("cumulMA2.txt")
 library (metafor)
 library(tidyr)
 library(MuMIn)
@@ -18,7 +18,7 @@ eval(metafor:::.MuMIn)
 ```
 
 ````{r data import}
-akiyama<-read.csv("C:/Users/lizzi/Documents/PhD/Data for temporal trends/Akiyama et al 2010/Akiyama et al 2010 - data file.csv",
+akiyama<-read.csv("akiyama.csv",
                   header =T, stringsAsFactors = TRUE)
 akiyama<-akiyama[order(akiyama$Year),]
 
