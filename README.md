@@ -1,7 +1,7 @@
 # temporal-trends
 
 ### Data files: 
-- fulldatset.csv - dataset used in overallanalysis.rmd, obtained from visual/statistical analysis of individual meta-analysis data.
+- fulldatset.csv - dataset used in "analysis of temporal trends.rmd", obtained from visual/statistical analysis of individual meta-analysis data.
 - akiyama.csv - data from Akiyama et. al 2010, used as sample meta-analysis in example code 
 - databiblio.txt - reference list of meta-analyses from which data extracted/requested for analysis
 
