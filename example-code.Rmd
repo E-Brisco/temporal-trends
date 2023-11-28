@@ -1,7 +1,7 @@
 ---
 title: "Example r code"
 output: html_document
-date: '2022-10-10'
+date: '2023-11-28'
 editor_options: 
   chunk_output_type: console
 ---
@@ -14,6 +14,8 @@ library(MuMIn)
 library(dplyr)
 library(ggplot2)
 eval(metafor:::.MuMIn)
+source("two stage.R")
+source("residual.R")
 ```
 
 ````{r data import}

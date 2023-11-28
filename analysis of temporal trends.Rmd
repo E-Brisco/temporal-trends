@@ -1,6 +1,7 @@
 
 ```{r}
 trenddata<-read.csv("full dataset.csv", stringsAsFactors = TRUE)
+names(trenddata)[1] <- "Year"
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -19,7 +20,7 @@ count(trenddata, X2.stage.magnitude.trend.1, sort = TRUE)
 
 count(trenddata, Residual.trend, sort = TRUE)
 
-with(trenddata, table(X2.stage.magnitude.trend, Significance.of.sample.size),)
+with(trenddata, table(X2.stage.magnitude.trend, Significance.of.sample.size))
 
 trendonly<-subset(trenddata, X2.stage.magnitude.trend=="1")
 trendsigonly<-subset(trenddata, X2.stage.significance.trend=="1")
@@ -70,7 +71,7 @@ chisq.test(trenddatanona$experimental.conditions.moderator,trenddatanona$Residua
 chisq.test(trendonly$experimental.conditions.moderator,trendonly$Residual.trend)
 
 chisq.test(trenddata$methodology.moderator,trenddata$Residual.trend)
-with(trenddatanona, table(Residual.trend, X2.stage.magnitude.trend,methodology.moderator),)
+with(trenddatanona, table(Residual.trend, X2.stage.magnitude.trend,methodology.moderator))
 chisq.test(trendonly$methodology.moderator,trendonly$Residual.trend)
 
 ##year of publication
@@ -112,7 +113,7 @@ summary(lm3)
 cor.test(formula = ~ Year.span + Number.of.significant.moderators, 
  method = "spearman", data = trenddata)
 
-with(trenddata, table(Year, X2.stage.magnitude.trend),)
+with(trenddata, table(Year, X2.stage.magnitude.trend))
 ```
 
 
@@ -124,8 +125,8 @@ with(trenddata, table(Year, X2.stage.magnitude.trend),)
 chisq.test(trenddata$Year,trenddata$X2.stage.significance.trend.1)
 chisq.test(trendsigonly$Year,trendsigonly$X2.stage.significance.trend.1)
 
-with(trenddata, table(X2.stage.significance.trend.1, Year),)
-with(trendsigonly, table(X2.stage.significance.trend.1, Year),)
+with(trenddata, table(X2.stage.significance.trend.1, Year))
+with(trendsigonly, table(X2.stage.significance.trend.1, Year))
 ```
 ```{r}
 
@@ -136,8 +137,8 @@ plot(Year~Year.span, data=trenddata)
 ```{r}
 chisq.test(trenddata$X2.stage.magnitude.trend,trenddata$X2.stage.significance.trend)
 chisq.test(trenddata$X2.stage.magnitude.trend.1,trenddata$X2.stage.significance.trend.1)
-with(trenddata, table(X2.stage.significance.trend.1,X2.stage.magnitude.trend.1 ),)
-with(trenddata, table(X2.stage.significance.trend.1,Year),)
+with(trenddata, table(X2.stage.significance.trend.1,X2.stage.magnitude.trend.1 ))
+with(trenddata, table(X2.stage.significance.trend.1,Year))
 
 
 sometrend<-subset(trenddata, X2.stage.significance.trend=="1"|X2.stage.magnitude.trend=="1")
@@ -146,11 +147,11 @@ chisq.test(sometrend$X2.stage.magnitude.trend.1,sometrend$X2.stage.significance.
 ```{r}
 newmethoddata<-read.csv("full dataset.csv", stringsAsFactors = TRUE)
 
-with(newmethoddata, table(Residual.trend),)
+with(newmethoddata, table(Residual.trend))
 chisq.test(newmethoddata$magnitude.change, newmethoddata$X1.stage.magnitude.trend)
 flatexcl<-subset(newmethoddata, !X1.stage.magnitude.trend=="no")
 chisq.test(flatexcl$magnitude.trend, flatexcl$magnitude.change)
-with(newmethoddata, table(X2.stage.magnitude.trend, magnitude.change),)
+with(newmethoddata, table(X2.stage.magnitude.trend, magnitude.change))
 
 ```
 ```{r}
