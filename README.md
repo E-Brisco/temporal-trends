@@ -1,18 +1,18 @@
 # temporal-trends
 
 ### Data files: 
-- fulldatset.csv - dataset used in "analysis of temporal trends.rmd", obtained from visual/statistical analysis of individual meta-analysis data.
+- full dataset.csv - dataset used in "analysis of temporal trends.rmd", obtained from visual/statistical analysis of individual meta-analysis data.
 - akiyama.csv - data from Akiyama et. al 2010, used as sample meta-analysis in example code 
 - databiblio.txt - reference list of meta-analyses from which data extracted/requested for analysis
 
 ### R files:
 define functions:
-- two stage.rmd - function for two stage CMA (see Kulinskaya & Mah 2022)
-- residual.rmd - function for calculating residuals from CMA, to test impact of moderators
+- two stage.R - function for two stage CMA (see Kulinskaya & Mah 2022)
+- residual.R - function for calculating residuals from CMA, to test impact of moderators
 
 analysis code:
-- example-code.rmd - sample analysis of individual meta-analysis
-- analysis of temporal trends.rmd - r code used to reproduce analyses and figures in paper using fulldataset.csv
+- example-code.Rmd - sample analysis of individual meta-analysis
+- analysis of temporal trends.Rmd - r code used to reproduce analyses and figures in paper using fulldataset.csv
 
 
 ### Authors:
